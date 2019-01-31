@@ -1,0 +1,33 @@
+* {
+  font-size: 16px;
+}
+
+body {
+  padding: 20px;
+}
+
+#addTodo {
+  font-size: 1.2rem;
+}
+
+#todoList, #todoEmpty {
+  border-radius: 5px;
+  border: 1px dashed gray;
+  margin: 20px 0px;
+  padding: 20px;
+  text-align: center;
+  width: 400px;
+}
+
+.todo input {
+  width: 80%;
+}
+
+#nextTodo {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+#todoCount {
+  font-size: 0.8em;
+}
