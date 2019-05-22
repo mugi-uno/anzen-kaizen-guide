@@ -5,5 +5,13 @@
   ],
   "rules": {
     "import/prefer-default-export": "off"
+  },
+  "globals": {
+    "$": false,
+    "describe": false,
+    "beforeEach": false,
+    "expect": false,
+    "it": false,
+    "page": false
   }
 }
