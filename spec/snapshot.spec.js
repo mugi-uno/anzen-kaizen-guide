@@ -2,7 +2,7 @@ const path = require("path");
 
 describe("TODOアプリ", () => {
   beforeEach(async () => {
-    await page.goto("file://" + path.resolve(__dirname, "../index.html"));
+    await page.goto(`file://${path.resolve(__dirname, "../index.html")}`);
   });
 
   it("初期表示", async () => {
