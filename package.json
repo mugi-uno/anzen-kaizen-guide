@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest spec/e2e.spec.js visual.spec.js",
+    "test": "jest spec/e2e.spec.ts visual.spec.ts",
     "test:all": "jest",
     "lint": "eslint '**/*.js'"
   },
@@ -20,6 +20,11 @@
   },
   "homepage": "https://github.com/mugi-uno/anzen-kaizen-guide#readme",
   "devDependencies": {
+    "@types/expect-puppeteer": "^3.3.1",
+    "@types/jest": "^24.0.13",
+    "@types/jest-environment-puppeteer": "^4.0.0",
+    "@types/jest-image-snapshot": "^2.8.0",
+    "@types/node": "^12.0.2",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^4.3.0",
@@ -29,6 +34,8 @@
     "jest-image-snapshot": "^2.8.2",
     "jest-puppeteer": "^4.1.1",
     "prettier": "^1.17.1",
-    "puppeteer": "^1.16.0"
+    "puppeteer": "^1.16.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.5"
   }
 }

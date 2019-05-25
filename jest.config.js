@@ -1,3 +1,7 @@
 module.exports = {
-  preset: "jest-puppeteer"
+  preset: "jest-puppeteer",
+  transform: {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  moduleFileExtensions: ["ts", "js"]
 };

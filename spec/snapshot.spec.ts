@@ -1,6 +1,4 @@
-const path = require("path");
-const { toMatchImageSnapshot } = require("jest-image-snapshot");
-expect.extend({ toMatchImageSnapshot });
+import path from "path";
 
 describe("TODOアプリ", () => {
   beforeEach(async () => {
@@ -8,13 +6,13 @@ describe("TODOアプリ", () => {
   });
 
   it("初期表示", async () => {
-    expect(await page.screenshot()).toMatchImageSnapshot();
+    expect(await page.content()).toMatchSnapshot();
   });
 
   it("タスクの追加", async () => {
     await page.click("#addTodo");
     await page.click("#addTodo");
-    expect(await page.screenshot()).toMatchImageSnapshot();
+    expect(await page.content()).toMatchSnapshot();
   });
 
   it("タスクの入力", async () => {
@@ -22,7 +20,7 @@ describe("TODOアプリ", () => {
     await page.click("#addTodo");
     await page.type(".todo:nth-child(1) input", "サンプルタスク1");
     await page.type(".todo:nth-child(2) input", "サンプルタスク2");
-    expect(await page.screenshot()).toMatchImageSnapshot();
+    expect(await page.content()).toMatchSnapshot();
   });
 
   it("タスクの削除", async () => {
@@ -32,6 +30,6 @@ describe("TODOアプリ", () => {
     await page.type(".todo:nth-child(2) input", "サンプルタスク2");
     await page.click(".todo:nth-child(1) .delete");
     await page.click(".todo:nth-child(1) .delete");
-    expect(await page.screenshot()).toMatchImageSnapshot();
+    expect(await page.content()).toMatchSnapshot();
   });
 });
