@@ -1,10 +1,9 @@
 import $ from "jquery";
+import { readData } from "./reader";
 
 /* eslint-disable func-names,no-var,vars-on-top,prefer-template */
 function updateAll() {
-  var count = $(".todo").length;
-  var next = $(".todo input").first();
-  var nextTodoText = count ? next.val() : "(未登録)";
+  const { count, nextTodoText } = readData();
 
   $("#nextTodo").text("次のTODO: " + nextTodoText);
   $("#todoCount").text("(全" + count + "件)");
