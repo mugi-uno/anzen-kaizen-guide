@@ -4,6 +4,7 @@
     "module": "commonjs",
     "lib": ["es2019", "dom", "dom.iterable"],
     "allowJs": true,
+    "sourceMap": true,
     "strict": true,
     "noImplicitAny": false,
     "esModuleInterop": true

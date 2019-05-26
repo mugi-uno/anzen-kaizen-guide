@@ -15,7 +15,7 @@ exports[`TODOアプリ タスクの入力 1`] = `
       <span id=\\"todoCount\\">(全2件)</span>
     </div>
     <script src=\\"./js/jquery-3.3.1.min.js\\"></script>
-    <script src=\\"./js/script.js\\"></script>
+    <script src=\\"./dist/main.js\\"></script>
    
 
 </body></html>"
@@ -36,7 +36,7 @@ exports[`TODOアプリ タスクの削除 1`] = `
       <span id=\\"todoCount\\">(全0件)</span>
     </div>
     <script src=\\"./js/jquery-3.3.1.min.js\\"></script>
-    <script src=\\"./js/script.js\\"></script>
+    <script src=\\"./dist/main.js\\"></script>
    
 
 </body></html>"
@@ -57,7 +57,7 @@ exports[`TODOアプリ タスクの追加 1`] = `
       <span id=\\"todoCount\\">(全2件)</span>
     </div>
     <script src=\\"./js/jquery-3.3.1.min.js\\"></script>
-    <script src=\\"./js/script.js\\"></script>
+    <script src=\\"./dist/main.js\\"></script>
    
 
 </body></html>"
@@ -78,7 +78,7 @@ exports[`TODOアプリ 初期表示 1`] = `
       <span id=\\"todoCount\\">(全0件)</span>
     </div>
     <script src=\\"./js/jquery-3.3.1.min.js\\"></script>
-    <script src=\\"./js/script.js\\"></script>
+    <script src=\\"./dist/main.js\\"></script>
    
 
 </body></html>"
