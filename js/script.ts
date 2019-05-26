@@ -1,35 +1,22 @@
 import $ from "jquery";
 import { readData } from "./reader";
+import {
+  writeNextTodo,
+  writeTodoCount,
+  toggleTodoList,
+  toggleTodoEmpty,
+  removeTodo,
+  addTodo
+} from "./writer";
 
-/* eslint-disable func-names,no-var,vars-on-top,prefer-template */
+/* eslint-disable func-names */
 function updateAll() {
   const { count, nextTodoText } = readData();
 
-  $("#nextTodo").text("次のTODO: " + nextTodoText);
-  $("#todoCount").text("(全" + count + "件)");
-
-  if (count) {
-    $("#todoList").show();
-    $("#todoEmpty").hide();
-  } else {
-    $("#todoList").hide();
-    $("#todoEmpty").show();
-  }
-}
-
-function addTodo() {
-  var wrapper = $("<div>");
-  wrapper.addClass("todo");
-
-  var input = $("<input>");
-  input.attr("type", "text");
-
-  var deleteButton = $("<button>");
-  deleteButton.addClass("delete").text("削除");
-
-  wrapper.append(input);
-  wrapper.append(deleteButton);
-  $("#todoList").append(wrapper);
+  writeNextTodo(nextTodoText);
+  writeTodoCount(count);
+  toggleTodoList(count);
+  toggleTodoEmpty(count);
 }
 
 $(function() {
@@ -43,9 +30,7 @@ $(function() {
   });
 
   $("#todoList").on("click", ".delete", function() {
-    $(this)
-      .closest(".todo")
-      .remove();
+    removeTodo(this);
     updateAll();
   });
 

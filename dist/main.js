@@ -86,6 +86,30 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./js/reader.ts":
+/*!**********************!*\
+  !*** ./js/reader.ts ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var jquery_1 = __importDefault(__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"));
+exports.readData = function () {
+    var count = jquery_1.default(".todo").length;
+    var next = jquery_1.default(".todo input").first();
+    var nextTodoText = count ? next.val() : "(未登録)";
+    return { count: count, nextTodoText: nextTodoText };
+};
+
+
+/***/ }),
+
 /***/ "./js/script.ts":
 /*!**********************!*\
   !*** ./js/script.ts ***!
@@ -100,23 +124,74 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var jquery_1 = __importDefault(__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"));
-/* eslint-disable func-names,no-var,vars-on-top,prefer-template */
+var reader_1 = __webpack_require__(/*! ./reader */ "./js/reader.ts");
+var writer_1 = __webpack_require__(/*! ./writer */ "./js/writer.ts");
+/* eslint-disable func-names */
 function updateAll() {
-    var count = jquery_1.default(".todo").length;
-    var next = jquery_1.default(".todo input").first();
-    var nextTodoText = count ? next.val() : "(未登録)";
-    jquery_1.default("#nextTodo").text("次のTODO: " + nextTodoText);
-    jquery_1.default("#todoCount").text("(全" + count + "件)");
+    var _a = reader_1.readData(), count = _a.count, nextTodoText = _a.nextTodoText;
+    writer_1.writeNextTodo(nextTodoText);
+    writer_1.writeTodoCount(count);
+    writer_1.toggleTodoList(count);
+    writer_1.toggleTodoEmpty(count);
+}
+jquery_1.default(function () {
+    jquery_1.default("#addTodo").on("click", function () {
+        writer_1.addTodo();
+        updateAll();
+    });
+    jquery_1.default("#todoList").on("input", ".todo:eq(0)", function () {
+        updateAll();
+    });
+    jquery_1.default("#todoList").on("click", ".delete", function () {
+        writer_1.removeTodo(this);
+        updateAll();
+    });
+    updateAll();
+});
+
+
+/***/ }),
+
+/***/ "./js/writer.ts":
+/*!**********************!*\
+  !*** ./js/writer.ts ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var jquery_1 = __importDefault(__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"));
+exports.writeNextTodo = function (nextTodoText) {
+    jquery_1.default("#nextTodo").text("\u6B21\u306ETODO: " + nextTodoText);
+};
+exports.writeTodoCount = function (count) {
+    jquery_1.default("#todoCount").text("(\u5168" + count + "\u4EF6)");
+};
+exports.toggleTodoList = function (count) {
     if (count) {
         jquery_1.default("#todoList").show();
-        jquery_1.default("#todoEmpty").hide();
     }
     else {
         jquery_1.default("#todoList").hide();
+    }
+};
+exports.toggleTodoEmpty = function (count) {
+    if (count) {
+        jquery_1.default("#todoEmpty").hide();
+    }
+    else {
         jquery_1.default("#todoEmpty").show();
     }
-}
-function addTodo() {
+};
+exports.removeTodo = function ($element) {
+    $element.closest(".todo").remove();
+};
+exports.addTodo = function () {
     var wrapper = jquery_1.default("<div>");
     wrapper.addClass("todo");
     var input = jquery_1.default("<input>");
@@ -126,23 +201,7 @@ function addTodo() {
     wrapper.append(input);
     wrapper.append(deleteButton);
     jquery_1.default("#todoList").append(wrapper);
-}
-jquery_1.default(function () {
-    jquery_1.default("#addTodo").on("click", function () {
-        addTodo();
-        updateAll();
-    });
-    jquery_1.default("#todoList").on("input", ".todo:eq(0)", function () {
-        updateAll();
-    });
-    jquery_1.default("#todoList").on("click", ".delete", function () {
-        jquery_1.default(this)
-            .closest(".todo")
-            .remove();
-        updateAll();
-    });
-    updateAll();
-});
+};
 
 
 /***/ }),
