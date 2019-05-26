@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 /* eslint-disable func-names,no-var,vars-on-top,prefer-template */
 function updateAll() {
   var count = $(".todo").length;
