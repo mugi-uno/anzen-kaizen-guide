@@ -27,6 +27,7 @@
     "@types/jquery": "^3.3.29",
     "@types/node": "^12.0.2",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "css-loader": "^2.1.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^4.3.0",
@@ -37,13 +38,17 @@
     "jest-puppeteer": "^4.1.1",
     "prettier": "^1.17.1",
     "puppeteer": "^1.16.0",
+    "style-loader": "^0.23.1",
     "ts-jest": "^24.0.2",
     "ts-loader": "^6.0.1",
     "typescript": "^3.4.5",
+    "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.6.10",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2"
   },
   "dependencies": {
-    "jquery": "^3.3.1"
+    "jquery": "^3.3.1",
+    "vue": "^2.6.10"
   }
 }
