@@ -176,6 +176,37 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./js/Store.ts":
+/*!*********************!*\
+  !*** ./js/Store.ts ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var vue_1 = __importDefault(__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm.js"));
+var store = vue_1.default.observable({
+    nextTodoText: "",
+    todoCount: 0
+});
+exports.mutations = {
+    updateNextTodoText: function (nextTodoText) {
+        store.nextTodoText = nextTodoText;
+    },
+    updateTodoCount: function (todoCount) {
+        store.todoCount = todoCount;
+    }
+};
+exports.default = store;
+
+
+/***/ }),
+
 /***/ "./js/TodoCount.vue":
 /*!**************************!*\
   !*** ./js/TodoCount.vue ***!
@@ -329,9 +360,12 @@ __webpack_require__(/*! ./mount */ "./js/mount.ts");
 var jquery_1 = __importDefault(__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"));
 var reader_1 = __webpack_require__(/*! ./reader */ "./js/reader.ts");
 var writer_1 = __webpack_require__(/*! ./writer */ "./js/writer.ts");
+var Store_1 = __webpack_require__(/*! ./Store */ "./js/Store.ts");
 /* eslint-disable func-names */
 function updateAll() {
     var _a = reader_1.readData(), count = _a.count, nextTodoText = _a.nextTodoText;
+    Store_1.mutations.updateNextTodoText(nextTodoText);
+    Store_1.mutations.updateTodoCount(Number(count));
     writer_1.toggleTodoList(count);
     writer_1.toggleTodoEmpty(count);
 }
@@ -367,12 +401,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var jquery_1 = __importDefault(__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"));
-exports.writeNextTodo = function (nextTodoText) {
-    jquery_1.default("#nextTodo").text("\u6B21\u306ETODO: " + nextTodoText);
-};
-exports.writeTodoCount = function (count) {
-    jquery_1.default("#todoCount").text("(\u5168" + count + "\u4EF6)");
-};
 exports.toggleTodoList = function (count) {
     if (count) {
         jquery_1.default("#todoList").show();
@@ -11960,10 +11988,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var vue_1 = __importDefault(__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm.js"));
+var Store_1 = __importDefault(__webpack_require__(/*! ./Store */ "./js/Store.ts"));
 exports.default = vue_1.default.extend({
     computed: {
         nextTodoText: function () {
-            return ''; // dummy
+            return Store_1.default.nextTodoText;
         }
     }
 });
@@ -11985,10 +12014,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var vue_1 = __importDefault(__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm.js"));
+var Store_1 = __importDefault(__webpack_require__(/*! ./Store */ "./js/Store.ts"));
 exports.default = vue_1.default.extend({
     computed: {
         count: function () {
-            return 0; // dummy
+            return Store_1.default.todoCount;
         }
     }
 });
