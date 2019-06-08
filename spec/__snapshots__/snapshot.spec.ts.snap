@@ -23,10 +23,22 @@ div[data-v-7b0b1d4f] {
   text-align: center;
   width: 400px;
 }
+</style><style type=\\"text/css\\">
+#todoList[data-v-4e956b0c] {
+  border-radius: 5px;
+  border: 1px dashed gray;
+  margin: 20px 0px;
+  padding: 20px;
+  text-align: center;
+  width: 400px;
+}
+.todo input[data-v-4e956b0c] {
+  width: 80%;
+}
 </style></head>
   <body>
     <button id=\\"addTodo\\">タスクを追加する</button>
-    <div id=\\"todoList\\" style=\\"\\"><div class=\\"todo\\"><input type=\\"text\\"><button class=\\"delete\\">削除</button></div><div class=\\"todo\\"><input type=\\"text\\"><button class=\\"delete\\">削除</button></div></div>
+    <div data-v-4e956b0c=\\"\\" id=\\"todoList\\" style=\\"\\"><div data-v-4e956b0c=\\"\\" class=\\"todo\\"><input data-v-4e956b0c=\\"\\" type=\\"text\\"> <button data-v-4e956b0c=\\"\\" class=\\"delete\\">削除</button></div><div data-v-4e956b0c=\\"\\" class=\\"todo\\"><input data-v-4e956b0c=\\"\\" type=\\"text\\"> <button data-v-4e956b0c=\\"\\" class=\\"delete\\">削除</button></div></div>
     <div data-v-7b0b1d4f=\\"\\" id=\\"todoEmpty\\" style=\\"display: none;\\">タスクがありません</div>
     <div>
       <span data-v-a5c1973e=\\"\\" id=\\"nextTodo\\">次のTODO: サンプルタスク1</span>
@@ -61,10 +73,22 @@ div[data-v-7b0b1d4f] {
   text-align: center;
   width: 400px;
 }
+</style><style type=\\"text/css\\">
+#todoList[data-v-4e956b0c] {
+  border-radius: 5px;
+  border: 1px dashed gray;
+  margin: 20px 0px;
+  padding: 20px;
+  text-align: center;
+  width: 400px;
+}
+.todo input[data-v-4e956b0c] {
+  width: 80%;
+}
 </style></head>
   <body>
     <button id=\\"addTodo\\">タスクを追加する</button>
-    <div id=\\"todoList\\" style=\\"display: none;\\"></div>
+    <div data-v-4e956b0c=\\"\\" id=\\"todoList\\" style=\\"display: none;\\"></div>
     <div data-v-7b0b1d4f=\\"\\" id=\\"todoEmpty\\" style=\\"\\">タスクがありません</div>
     <div>
       <span data-v-a5c1973e=\\"\\" id=\\"nextTodo\\">次のTODO: (未登録)</span>
@@ -99,10 +123,22 @@ div[data-v-7b0b1d4f] {
   text-align: center;
   width: 400px;
 }
+</style><style type=\\"text/css\\">
+#todoList[data-v-4e956b0c] {
+  border-radius: 5px;
+  border: 1px dashed gray;
+  margin: 20px 0px;
+  padding: 20px;
+  text-align: center;
+  width: 400px;
+}
+.todo input[data-v-4e956b0c] {
+  width: 80%;
+}
 </style></head>
   <body>
     <button id=\\"addTodo\\">タスクを追加する</button>
-    <div id=\\"todoList\\" style=\\"\\"><div class=\\"todo\\"><input type=\\"text\\"><button class=\\"delete\\">削除</button></div><div class=\\"todo\\"><input type=\\"text\\"><button class=\\"delete\\">削除</button></div></div>
+    <div data-v-4e956b0c=\\"\\" id=\\"todoList\\" style=\\"\\"><div data-v-4e956b0c=\\"\\" class=\\"todo\\"><input data-v-4e956b0c=\\"\\" type=\\"text\\"> <button data-v-4e956b0c=\\"\\" class=\\"delete\\">削除</button></div><div data-v-4e956b0c=\\"\\" class=\\"todo\\"><input data-v-4e956b0c=\\"\\" type=\\"text\\"> <button data-v-4e956b0c=\\"\\" class=\\"delete\\">削除</button></div></div>
     <div data-v-7b0b1d4f=\\"\\" id=\\"todoEmpty\\" style=\\"display: none;\\">タスクがありません</div>
     <div>
       <span data-v-a5c1973e=\\"\\" id=\\"nextTodo\\">次のTODO: </span>
@@ -137,10 +173,22 @@ div[data-v-7b0b1d4f] {
   text-align: center;
   width: 400px;
 }
+</style><style type=\\"text/css\\">
+#todoList[data-v-4e956b0c] {
+  border-radius: 5px;
+  border: 1px dashed gray;
+  margin: 20px 0px;
+  padding: 20px;
+  text-align: center;
+  width: 400px;
+}
+.todo input[data-v-4e956b0c] {
+  width: 80%;
+}
 </style></head>
   <body>
     <button id=\\"addTodo\\">タスクを追加する</button>
-    <div id=\\"todoList\\" style=\\"display: none;\\"></div>
+    <div data-v-4e956b0c=\\"\\" id=\\"todoList\\" style=\\"display: none;\\"></div>
     <div data-v-7b0b1d4f=\\"\\" id=\\"todoEmpty\\">タスクがありません</div>
     <div>
       <span data-v-a5c1973e=\\"\\" id=\\"nextTodo\\">次のTODO: (未登録)</span>

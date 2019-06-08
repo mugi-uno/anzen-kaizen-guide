@@ -1,5 +1,6 @@
 import "./mount";
 import $ from "jquery";
+import Vue from "vue";
 import { readData } from "./reader";
 import { toggleTodoList, toggleTodoEmpty } from "./writer";
 import { mutations } from "./Store";
@@ -18,11 +19,11 @@ function updateAll() {
 $(function() {
   $("#addTodo").on("click", function() {
     mutations.addTodo();
-    updateAll();
+    Vue.nextTick(() => updateAll());
   });
 
   $("#todoList").on("input", ".todo:eq(0)", function() {
-    updateAll();
+    Vue.nextTick(() => updateAll());
   });
 
   $("#todoList").on("click", ".delete", function() {
@@ -31,7 +32,7 @@ $(function() {
         .find(".delete")
         .index(this)
     );
-    updateAll();
+    Vue.nextTick(() => updateAll());
   });
 
   updateAll();

@@ -552,6 +552,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(/*! ./mount */ "./js/mount.ts");
 var jquery_1 = __importDefault(__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"));
+var vue_1 = __importDefault(__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm.js"));
 var reader_1 = __webpack_require__(/*! ./reader */ "./js/reader.ts");
 var writer_1 = __webpack_require__(/*! ./writer */ "./js/writer.ts");
 var Store_1 = __webpack_require__(/*! ./Store */ "./js/Store.ts");
@@ -566,16 +567,16 @@ function updateAll() {
 jquery_1.default(function () {
     jquery_1.default("#addTodo").on("click", function () {
         Store_1.mutations.addTodo();
-        updateAll();
+        vue_1.default.nextTick(function () { return updateAll(); });
     });
     jquery_1.default("#todoList").on("input", ".todo:eq(0)", function () {
-        updateAll();
+        vue_1.default.nextTick(function () { return updateAll(); });
     });
     jquery_1.default("#todoList").on("click", ".delete", function () {
         Store_1.mutations.removeTodo(jquery_1.default("#todoList")
             .find(".delete")
             .index(this));
-        updateAll();
+        vue_1.default.nextTick(function () { return updateAll(); });
     });
     updateAll();
 });
