@@ -2,7 +2,6 @@ import "./mount";
 import $ from "jquery";
 import Vue from "vue";
 import { readData } from "./reader";
-import { toggleTodoList, toggleTodoEmpty } from "./writer";
 import { mutations } from "./Store";
 
 /* eslint-disable func-names */
@@ -11,9 +10,6 @@ function updateAll() {
 
   mutations.updateNextTodoText(nextTodoText as string);
   mutations.updateTodoCount(Number(count));
-
-  toggleTodoList(count);
-  toggleTodoEmpty(count);
 }
 
 $(function() {
