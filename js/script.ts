@@ -1,7 +1,7 @@
 import "./mount";
 import $ from "jquery";
 import { readData } from "./reader";
-import { toggleTodoList, toggleTodoEmpty, removeTodo, addTodo } from "./writer";
+import { toggleTodoList, toggleTodoEmpty } from "./writer";
 import { mutations } from "./Store";
 
 /* eslint-disable func-names */
@@ -17,7 +17,7 @@ function updateAll() {
 
 $(function() {
   $("#addTodo").on("click", function() {
-    addTodo();
+    mutations.addTodo();
     updateAll();
   });
 
@@ -26,7 +26,11 @@ $(function() {
   });
 
   $("#todoList").on("click", ".delete", function() {
-    removeTodo(this);
+    mutations.removeTodo(
+      $("#todoList")
+        .find(".delete")
+        .index(this)
+    );
     updateAll();
   });
 

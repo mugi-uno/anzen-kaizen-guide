@@ -15,22 +15,3 @@ export const toggleTodoEmpty = count => {
     $("#todoEmpty").show();
   }
 };
-
-export const removeTodo = $element => {
-  $element.closest(".todo").remove();
-};
-
-export const addTodo = () => {
-  const wrapper = $("<div>");
-  wrapper.addClass("todo");
-
-  const input = $("<input>");
-  input.attr("type", "text");
-
-  const deleteButton = $("<button>");
-  deleteButton.addClass("delete").text("削除");
-
-  wrapper.append(input);
-  wrapper.append(deleteButton);
-  $("#todoList").append(wrapper);
-};

@@ -9,16 +9,3 @@ body {
 #addTodo {
   font-size: 1.2rem;
 }
-
-#todoList {
-  border-radius: 5px;
-  border: 1px dashed gray;
-  margin: 20px 0px;
-  padding: 20px;
-  text-align: center;
-  width: 400px;
-}
-
-.todo input {
-  width: 80%;
-}
