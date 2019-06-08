@@ -9,7 +9,9 @@ import store from "./Store";
 export default Vue.extend({
   computed: {
     nextTodoText() {
-      return store.nextTodoText;
+      return store.todoList.length > 0 ?
+              store.todoList[0].todo :
+              "(未登録)";
     }
   }
 });

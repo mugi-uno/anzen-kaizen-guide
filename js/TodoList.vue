@@ -1,11 +1,11 @@
 <template>
   <div id="todoList" v-show="visible">
     <div
-      v-for="todo in todoList"
+      v-for="(todo, index) in todoList"
       :key="todo.key"
       class="todo"
     >
-      <input type="text" />
+      <input type="text" @input="updateTodo(index, $event.target.value)" />
       <button class="delete">削除</button>
     </div>
   </div>
@@ -13,15 +13,20 @@
 
 <script lang="ts">
 import Vue from "vue";
-import store from "./Store";
+import store, { mutations } from "./Store";
 
 export default Vue.extend({
   computed: {
     visible() {
-      return store.todoCount > 0;
+      return store.todoList.length > 0;
     },
     todoList() {
       return store.todoList;
+    }
+  },
+  methods: {
+    updateTodo(index: number, value: string) {
+      mutations.updateTodo(index, value);
     }
   }
 });

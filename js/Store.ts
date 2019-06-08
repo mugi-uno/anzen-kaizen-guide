@@ -6,9 +6,7 @@ type Todo = {
 };
 
 const store = Vue.observable({
-  todoList: [] as Todo[],
-  nextTodoText: "",
-  todoCount: 0
+  todoList: [] as Todo[]
 });
 
 export const mutations = {
@@ -21,11 +19,8 @@ export const mutations = {
   removeTodo(index: number) {
     store.todoList.splice(index, 1);
   },
-  updateNextTodoText(nextTodoText: string) {
-    store.nextTodoText = nextTodoText;
-  },
-  updateTodoCount(todoCount: number) {
-    store.todoCount = todoCount;
+  updateTodo(index: number, value: string) {
+    store.todoList[index].todo = value;
   }
 };
 

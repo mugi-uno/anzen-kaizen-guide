@@ -9,7 +9,7 @@ import store from "./Store";
 export default Vue.extend({
   computed: {
     count() {
-      return store.todoCount;
+      return store.todoList.length;
     }
   }
 });

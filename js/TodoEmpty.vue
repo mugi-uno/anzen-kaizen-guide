@@ -9,7 +9,7 @@ import store from "./Store";
 export default Vue.extend({
   computed: {
     visible() {
-      return store.todoCount === 0;
+      return store.todoList.length === 0;
     }
   }
 });

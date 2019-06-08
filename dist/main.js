@@ -191,9 +191,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var vue_1 = __importDefault(__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm.js"));
 var store = vue_1.default.observable({
-    todoList: [],
-    nextTodoText: "",
-    todoCount: 0
+    todoList: []
 });
 exports.mutations = {
     addTodo: function () {
@@ -205,11 +203,8 @@ exports.mutations = {
     removeTodo: function (index) {
         store.todoList.splice(index, 1);
     },
-    updateNextTodoText: function (nextTodoText) {
-        store.nextTodoText = nextTodoText;
-    },
-    updateTodoCount: function (todoCount) {
-        store.todoCount = todoCount;
+    updateTodo: function (index, value) {
+        store.todoList[index].todo = value;
     }
 };
 exports.default = store;
@@ -513,30 +508,6 @@ new vue_1.default(TodoList_vue_1.default).$mount("#todoList");
 
 /***/ }),
 
-/***/ "./js/reader.ts":
-/*!**********************!*\
-  !*** ./js/reader.ts ***!
-  \**********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var jquery_1 = __importDefault(__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"));
-exports.readData = function () {
-    var count = jquery_1.default(".todo").length;
-    var next = jquery_1.default(".todo input").first();
-    var nextTodoText = count ? next.val() : "(未登録)";
-    return { count: count, nextTodoText: nextTodoText };
-};
-
-
-/***/ }),
-
 /***/ "./js/script.ts":
 /*!**********************!*\
   !*** ./js/script.ts ***!
@@ -552,30 +523,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(/*! ./mount */ "./js/mount.ts");
 var jquery_1 = __importDefault(__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"));
-var vue_1 = __importDefault(__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm.js"));
-var reader_1 = __webpack_require__(/*! ./reader */ "./js/reader.ts");
 var Store_1 = __webpack_require__(/*! ./Store */ "./js/Store.ts");
 /* eslint-disable func-names */
-function updateAll() {
-    var _a = reader_1.readData(), count = _a.count, nextTodoText = _a.nextTodoText;
-    Store_1.mutations.updateNextTodoText(nextTodoText);
-    Store_1.mutations.updateTodoCount(Number(count));
-}
 jquery_1.default(function () {
     jquery_1.default("#addTodo").on("click", function () {
         Store_1.mutations.addTodo();
-        vue_1.default.nextTick(function () { return updateAll(); });
-    });
-    jquery_1.default("#todoList").on("input", ".todo:eq(0)", function () {
-        vue_1.default.nextTick(function () { return updateAll(); });
     });
     jquery_1.default("#todoList").on("click", ".delete", function () {
         Store_1.mutations.removeTodo(jquery_1.default("#todoList")
             .find(".delete")
             .index(this));
-        vue_1.default.nextTick(function () { return updateAll(); });
     });
-    updateAll();
 });
 
 
@@ -12228,7 +12186,9 @@ var Store_1 = __importDefault(__webpack_require__(/*! ./Store */ "./js/Store.ts"
 exports.default = vue_1.default.extend({
     computed: {
         nextTodoText: function () {
-            return Store_1.default.nextTodoText;
+            return Store_1.default.todoList.length > 0 ?
+                Store_1.default.todoList[0].todo :
+                "(未登録)";
         }
     }
 });
@@ -12254,7 +12214,7 @@ var Store_1 = __importDefault(__webpack_require__(/*! ./Store */ "./js/Store.ts"
 exports.default = vue_1.default.extend({
     computed: {
         count: function () {
-            return Store_1.default.todoCount;
+            return Store_1.default.todoList.length;
         }
     }
 });
@@ -12280,7 +12240,7 @@ var Store_1 = __importDefault(__webpack_require__(/*! ./Store */ "./js/Store.ts"
 exports.default = vue_1.default.extend({
     computed: {
         visible: function () {
-            return Store_1.default.todoCount === 0;
+            return Store_1.default.todoList.length === 0;
         }
     }
 });
@@ -12300,16 +12260,28 @@ exports.default = vue_1.default.extend({
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var vue_1 = __importDefault(__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm.js"));
-var Store_1 = __importDefault(__webpack_require__(/*! ./Store */ "./js/Store.ts"));
+var Store_1 = __importStar(__webpack_require__(/*! ./Store */ "./js/Store.ts"));
 exports.default = vue_1.default.extend({
     computed: {
         visible: function () {
-            return Store_1.default.todoCount > 0;
+            return Store_1.default.todoList.length > 0;
         },
         todoList: function () {
             return Store_1.default.todoList;
+        }
+    },
+    methods: {
+        updateTodo: function (index, value) {
+            Store_1.mutations.updateTodo(index, value);
         }
     }
 });
@@ -12435,9 +12407,16 @@ var render = function() {
       ],
       attrs: { id: "todoList" }
     },
-    _vm._l(_vm.todoList, function(todo) {
+    _vm._l(_vm.todoList, function(todo, index) {
       return _c("div", { key: todo.key, staticClass: "todo" }, [
-        _c("input", { attrs: { type: "text" } }),
+        _c("input", {
+          attrs: { type: "text" },
+          on: {
+            input: function($event) {
+              return _vm.updateTodo(index, $event.target.value)
+            }
+          }
+        }),
         _vm._v(" "),
         _c("button", { staticClass: "delete" }, [_vm._v("削除")])
       ])
