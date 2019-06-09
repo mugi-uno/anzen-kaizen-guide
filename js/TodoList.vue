@@ -6,27 +6,26 @@
       class="todo"
     >
       <input type="text" @input="updateTodo(index, $event.target.value)" />
-      <button class="delete">削除</button>
+      <button class="delete" @click="removeTodo(index)">削除</button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import store, { mutations } from "./Store";
+import Vue, { PropType } from "vue";
+import { Todo } from "./Store";
 
 export default Vue.extend({
-  computed: {
-    visible() {
-      return store.todoList.length > 0;
-    },
-    todoList() {
-      return store.todoList;
-    }
+  props: {
+    visible: { type: Boolean },
+    todoList: { type: Array as PropType<Todo[]> }
   },
   methods: {
     updateTodo(index: number, value: string) {
-      mutations.updateTodo(index, value);
+      this.$emit("updateTodo", { index, value });
+    },
+    removeTodo(index: number){
+      this.$emit("removeTodo", index);
     }
   }
 });

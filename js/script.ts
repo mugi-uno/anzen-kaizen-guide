@@ -1,18 +1,4 @@
-import "./mount";
-import $ from "jquery";
-import { mutations } from "./Store";
+import Vue from "vue";
+import TodoApp from "./TodoApp.vue";
 
-/* eslint-disable func-names */
-$(function() {
-  $("#addTodo").on("click", function() {
-    mutations.addTodo();
-  });
-
-  $("#todoList").on("click", ".delete", function() {
-    mutations.removeTodo(
-      $("#todoList")
-        .find(".delete")
-        .index(this)
-    );
-  });
-});
+new Vue(TodoApp).$mount("#app");

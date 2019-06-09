@@ -1,6 +1,6 @@
 import Vue from "vue";
 
-type Todo = {
+export type Todo = {
   key: number;
   todo: string;
 };
